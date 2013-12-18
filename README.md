@@ -13,3 +13,5 @@ Ideas for future expansion include;
 	- Support for LTC + other altcoin price tickers (Controllable by button press)         
 	- Sound notification based on adjustable thresholds.              
 	- EMA 10/21 strategy notification.                 
+
+Link to backlight I used: http://www.adafruit.com/products/1109
