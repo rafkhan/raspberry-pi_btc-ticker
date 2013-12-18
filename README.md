@@ -6,9 +6,9 @@ One day I got tired of pulling up bitcoin.clarkmoody or MtGox every time I wante
 I find myself checking it every few minutes when I am home, which could be a good or bad thing.
 
 
-Ideas for future expansion include; 
+Ideas for future expansion include;                
 	- Change display color based on market uptick/downtick.                   
-	- Dimming backlight                      
+	- Dimming backlight during certain timeslots (While the human is sleeping)          
 	- Recovery from dropped wireless connection / API call failure.                  
 	- Support for LTC + other altcoin price tickers (Controllable by button press)         
 	- Sound notification based on adjustable thresholds.              
