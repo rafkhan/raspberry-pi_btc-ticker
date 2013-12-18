@@ -14,4 +14,4 @@ Ideas for future expansion include;
 	- Sound notification based on adjustable thresholds.              
 	- EMA 10/21 strategy notification.                 
 
-Link to backlight I used: http://www.adafruit.com/products/1109
+Link to RGB LCD I used: http://www.adafruit.com/products/1109
