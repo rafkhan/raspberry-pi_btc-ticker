@@ -12,9 +12,6 @@ import time
 lcd = Adafruit_CharLCDPlate()
 lcd.begin(16,1)
 
-file = open("debug.txt")
-
-
 while 1:
 	lcd.clear()
 	data = json.load(urllib2.urlopen('http://data.mtgox.com/api/1/BTCUSD/ticker'))
