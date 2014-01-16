@@ -12,6 +12,11 @@ import time
 lcd = Adafruit_CharLCDPlate()
 lcd.begin(16,1)
 
+def mtgox()
+
+data["return"]["last"]["display"]
+data = json.load(urllib2.urlopen('http://data.mtgox.com/api/1/BTCUSD/ticker'))
+
 while 1:
 	lcd.clear()
 	data = json.load(urllib2.urlopen('http://data.mtgox.com/api/1/BTCUSD/ticker'))
@@ -19,3 +24,8 @@ while 1:
 	lcd.message(time)
 	lcd.message( "BTC/USD: " + data["return"]["last"]["display"])
 	sleep(30)
+
+mtgox_result = data["result"]
+if mtgox_result != "success":
+	print "fail"
+	lcd.message("MtGox API error")
