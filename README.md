@@ -17,3 +17,7 @@ One day I got tired of pulling up bitcoin.clarkmoody or MtGox every time I wante
 Aside from the alien blue glow at 3AM, and knowing the price of bitcoin nearly 24/7, surprisingly little has changed. Knowing the EXACT price of bitcoin is reassuring when trading, but I find the data is difficult to keep in my memory, so I think some kind of 1 hour/24 hour averaging would be beneficial as a second menu option.
 
 Will report back if I experience a singularity with the blockchain.
+
+####Photos
+![FirstPicture](http://imgur.com/W5mvL72)
+
