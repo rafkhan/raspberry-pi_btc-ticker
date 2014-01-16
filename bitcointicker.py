@@ -20,21 +20,23 @@ while 1:
         lcd.message( "BTC/USD: " + data["return"]["last"]["display"])
         sleep(30)
 
-##### Code Snippets
-# API call and selection
-mtgox = json.load(urllib2.urlopen('http://data.mtgox.com/api/1/BTCUSD/ticker'))
-mtgox_currentprice = mtgox["return"]["last"]["value"]
-mtgox_result = mtgox["result"]
+##### API calls and selection
+#Bitcoin (BTC)
+BTC = json.load(urllib2.urlopen('http://data.mtgox.com/api/1/BTCUSD/ticker'))
+BTC_currentprice = mtgox["return"]["last"]["value"]
+BTC_result = mtgox["result"]
 
-# Checks if price > 1000
+# Checks if BTC price > 1000
 if (int(round(float(mtgox_currentprice))) > 1000):
 	over1000 = int(round(float(mtgox_currentprice)))
 
-#If result != "success", write error message
+#If BTC result != "success", write error message
 if mtgox_result != "success":
 	print "fail"
 	lcd.message("MtGox API error")
-#####
 
-
+#Dogecoin (DOGE)
+DOGE = json.loag(urllib2.urlopen('http://pubapi.cryptsy.com/api.php?method=singlemarketdata&marketid=132'))
+DOGE_currentprice = DOGE["markets"]["DOGE"]["lasttradeprice"]
+DOGE_result = DOGE["success"]
 
