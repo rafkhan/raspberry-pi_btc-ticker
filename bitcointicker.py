@@ -14,15 +14,18 @@ lcd.begin(16,1)
 
 ##### API calls and selection
 
-##### Bitcoin #####
-BTC = json.load(urllib2.urlopen('http://data.mtgox.com/api/1/BTCUSD/ticker'))
+##### Bitcoin (BTC) #####
+def API():
+	global BTC
+	BTC = json.load(urllib2.urlopen('http://data.mtgox.com/api/1/BTCUSD/ticker'))
+	sleep(30)
 BTC_currentprice = BTC["return"]["last"]["value"]
 BTC_result = BTC["result"]
 # >1000 rollover
-if (int(round(float(mtgox_currentprice))) > 1000):
+if (int(round(float(BTC_currentprice))) > 1000):
     BTC_finalprice = int(round(float(mtgox_currentprice)))
 else:
-	BTC.finalprice = mtgox_currentprice
+	BTC_finalprice = BTC_currentprice
 #Error handling
 if BTC_result != "success":
 	print "fail"
@@ -30,10 +33,10 @@ if BTC_result != "success":
 # Function
 def BTC():
     lcd.clear()
+    API()
     time = datetime.now().strftime( '%F %H:%M\n' )
     lcd.message(time)
-    lcd.message( "BTC/USD: " + "$" + BTC_currentprice)
-    sleep(30)
+    lcd.message( "BTC/USD: " + "$" + BTC_finalprice)
 BTC()
 
 
