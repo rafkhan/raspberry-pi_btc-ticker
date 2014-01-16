@@ -12,31 +12,32 @@ import time
 lcd = Adafruit_CharLCDPlate()
 lcd.begin(16,1)
 
-while 1:
-        lcd.clear()
-        data = json.load(urllib2.urlopen('http://data.mtgox.com/api/1/BTCUSD/ticker'))
-        time = datetime.now().strftime( '%F %H:%M\n' )
-        lcd.message(time)
-        lcd.message( "BTC/USD: " + data["return"]["last"]["display"])
-        sleep(30)
-
 ##### API calls and selection
-#Bitcoin (BTC)
+
+##### Bitcoin #####
 BTC = json.load(urllib2.urlopen('http://data.mtgox.com/api/1/BTCUSD/ticker'))
-BTC_currentprice = mtgox["return"]["last"]["value"]
-BTC_result = mtgox["result"]
-
-# Checks if BTC price > 1000
+BTC_currentprice = BTC["return"]["last"]["value"]
+BTC_result = BTC["result"]
+# >1000 rollover
 if (int(round(float(mtgox_currentprice))) > 1000):
-	over1000 = int(round(float(mtgox_currentprice)))
-
-#If BTC result != "success", write error message
-if mtgox_result != "success":
+    BTC_finalprice = int(round(float(mtgox_currentprice)))
+else:
+	BTC.finalprice = mtgox_currentprice
+#Error handling
+if BTC_result != "success":
 	print "fail"
 	lcd.message("MtGox API error")
+# Function
+def BTC():
+    lcd.clear()
+    time = datetime.now().strftime( '%F %H:%M\n' )
+    lcd.message(time)
+    lcd.message( "BTC/USD: " + "$" + BTC_currentprice)
+    sleep(30)
+BTC()
+
 
 #Dogecoin (DOGE)
-DOGE = json.loag(urllib2.urlopen('http://pubapi.cryptsy.com/api.php?method=singlemarketdata&marketid=132'))
-DOGE_currentprice = DOGE["markets"]["DOGE"]["lasttradeprice"]
-DOGE_result = DOGE["success"]
-
+#DOGE = json.load(urllib2.urlopen('http://pubapi.cryptsy.com/api.php?method=singlemarketdata&marketid=132'))
+#DOGE_currentprice = DOGE["markets"]["DOGE"]["lasttradeprice"]
+#DOGE_result = DOGE["success"]
