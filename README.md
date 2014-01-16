@@ -19,5 +19,4 @@ Aside from the alien blue glow at 3AM, and knowing the price of bitcoin nearly 2
 Will report back if I experience a singularity with the blockchain.
 
 ####Photos
-![FirstPicture](http://imgur.com/W5mvL72)
-
+![FirstPicture](http://i.imgur.com/W5mvL72.jpg)
