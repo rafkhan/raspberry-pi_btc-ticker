@@ -26,17 +26,35 @@ def BTC():
 		final_price = current_price
 	return final_price
 
+def DOGE():
+	cryptsy = json.load(urllib2.urlopen('http://data.mtgox.com/api/1/BTCUSD/ticker'))
+	if cryptsy["result"] != "1":
+		raise Exception("Cryptsy API failed!")
+
+	current_price = cryptsy["return"]["markets"]["DOGE"]["lasttradeprice"]
+	# No rollover necessary, but need to figure out how to deal with decimal places
+	return final_price
+
+#Add support for switching between currencies by using button code
 while 1:
 	lcd.clear()
 	#Calls BTC function, gets time and formats.
+
+	#
+	# Handle all query exceptions in the main loop
+	# because the possibility of generating other types
+	# of exceptions for various things exists
+	# so you can generate output based on that. - Raf
+	#
 	try:
 		price = BTC()
 	except Exception:
 		lcd.message("MtGox API call failed! :(")
 
 	time = datetime.now().strftime( '%F %H:%M\n' )
-	#Displays time on first line, BTC/USD rate on next line.
+	#Displays time on first line, BTC/USD rate on next line
 	lcd.message(time)
 	lcd.message( "BTC/USD: " + "$" + price)
-	#Sleeps until next API call can be made. 
+	#Sleeps until next API call is possible
+	#Needs to be customized per API, add support next
 	sleep(30)
