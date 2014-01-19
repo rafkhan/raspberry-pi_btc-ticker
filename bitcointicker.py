@@ -15,7 +15,6 @@ lcd.begin(16,1)
 def BTC():
 	mtgox = json.load(urllib2.urlopen('http://data.mtgox.com/api/1/BTCUSD/ticker'))
 	if mtgox["result"] != "success":
-		lcd.message("MtGox API call failed! :(")
 		raise Exception("MtGox API call failed!")
  
 	current_price = mtgox["return"]["last"]["value"]
@@ -30,7 +29,11 @@ def BTC():
 while 1:
 	lcd.clear()
 	#Calls BTC function, gets time and formats.
-	price = BTC()
+	try:
+		price = BTC()
+	except Exception:
+		lcd.message("MtGox API call failed! :(")
+
 	time = datetime.now().strftime( '%F %H:%M\n' )
 	#Displays time on first line, BTC/USD rate on next line.
 	lcd.message(time)
