@@ -15,8 +15,8 @@ lcd.begin(16,1)
 def BTC():
 	mtgox = json.load(urllib2.urlopen('http://data.mtgox.com/api/1/BTCUSD/ticker'))
 	if mtgox["result"] != "success":
-		lcd.message("MtGox API call failed! :(")
-		raise Exception("MtGox API call failed!")
+		lcd.message("MtGox API failed!")
+		raise Exception("MtGox API failed!")
  
 	current_price = mtgox["return"]["last"]["value"]
 
@@ -27,13 +27,25 @@ def BTC():
 		final_price = current_price
 	return final_price
 
+def DOGE():
+	cryptsy = json.load(urllib2.urlopen('http://data.mtgox.com/api/1/BTCUSD/ticker'))
+	if cryptsy["result"] != "1":
+		lcd.message("Cryptsy API failed!")
+		raise Exception("Cryptsy API failed!")
+
+	current_price = cryptsy["return"]["markets"]["DOGE"]["lasttradeprice"]
+	# No rollover necessary, but need to figure out how to deal with decimal places
+	return final_price
+
+#Add support for switching between currencies by using button code
 while 1:
 	lcd.clear()
-	#Calls BTC function, gets time and formats.
+	#Calls BTC function, gets time and formats
 	price = BTC()
 	time = datetime.now().strftime( '%F %H:%M\n' )
-	#Displays time on first line, BTC/USD rate on next line.
+	#Displays time on first line, BTC/USD rate on next line
 	lcd.message(time)
 	lcd.message( "BTC/USD: " + "$" + price)
-	#Sleeps until next API call can be made. 
+	#Sleeps until next API call is possible
+	#Needs to be customized per API, add support next
 	sleep(30)
